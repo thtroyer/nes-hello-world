@@ -126,6 +126,7 @@ SetSpritePositions:
   sta $021C
   sta $0220
   sta $0224
+  sta $0228
 
   ; X coordinates for "HELLO WORLD", ofsetting each char and wrapping after O
   clc
@@ -150,6 +151,8 @@ SetSpritePositions:
   sta $0223
   adc #$08
   sta $0227
+  adc #$08
+  sta $022B
 
   jmp @Return
 @Else:
@@ -422,21 +425,22 @@ Palettes:
   ; background
   .byte $0F,$2D,$3D,$30,$0F,$2D,$3D,$30,$0F,$2D,$3D,$30,$0F,$2D,$3D,$30
   ; sprite
-  .byte $0F,$1C,$15,$19,$0F,$02,$38,$12,$0F,$1C,$15,$16,$0F,$02,$38,$3C
+  .byte $0F,$0A,$0F,$19, $0F,$02,$0F,$12, $0F,$2D,$0F,$20, $0F,$02,$0F,$3C
 
 Sprites:
   ; vert tile attr horiz
   .byte $00, $00, $00, $00 ; H sprite
-  .byte $00, $01, $01, $00 ; E sprite
-  .byte $00, $02, $02, $00 ; L sprite
+  .byte $00, $01, $00, $00 ; E sprite
   .byte $00, $02, $00, $00 ; L sprite
-  .byte $00, $03, $01, $00 ; O sprite
-
-  .byte $00, $10, $02, $00 ; W sprite
+  .byte $00, $02, $00, $00 ; L sprite
   .byte $00, $03, $00, $00 ; O sprite
+
+  .byte $00, $10, $01, $00 ; W sprite
+  .byte $00, $03, $01, $00 ; O sprite
   .byte $00, $11, $01, $00 ; R sprite
-  .byte $00, $02, $02, $00 ; L sprite
-  .byte $00, $12, $00, $00 ; D sprite
+  .byte $00, $02, $01, $00 ; L sprite
+  .byte $00, $12, $01, $00 ; D sprite
+  .byte $00, $13, $02, $00 ; ! sprite
 
 .segment "VECTORS"
 .word VBlank, Reset
