@@ -370,6 +370,7 @@ VBlank:
   rti
 
 Background:
+  ; These are references to tiles in hello.chr
   .byte $10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10
   .byte $10,$40,$31,$31,$31,$31,$31,$31,$31,$31,$31,$31,$31,$31,$31,$31,$31,$31,$31,$31,$31,$31,$31,$31,$31,$31,$31,$31,$31,$31,$41,$10
   .byte $10,$30,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$32,$10
@@ -402,6 +403,8 @@ Background:
   .byte $10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10,$10
 
 attribute:
+  ; PPU attribute table, for applying palettes to background.
+  ; reference here: https://wiki.nesdev.com/w/index.php/PPU_attribute_tables
   .byte $55,$55,$55,$55,$55,$55,$55,$55,$55,$55,$55,$55,$55,$55,$55,$55
   .byte $55,$55,$55,$55,$55,$55,$55,$55,$55,$55,$55,$55,$55,$55,$55,$55
   .byte $55,$55,$55,$55,$55,$55,$55,$55,$55,$55,$55,$55,$55,$55,$55,$55
@@ -422,13 +425,21 @@ Palettes:
   ; each palette consists of 4 bytes, starting with $0F (transparent)
   ; colors are defined in the PPU and are looked up by bytes. No RGB here.
 
-  ; background
-  .byte $0F,$2D,$3D,$30,$0F,$2D,$3D,$30,$0F,$2D,$3D,$30,$0F,$2D,$3D,$30
-  ; sprite
-  .byte $0F,$0A,$0F,$19, $0F,$02,$0F,$12, $0F,$2D,$0F,$20, $0F,$02,$0F,$3C
+  ; 4 background palettes, referenced in PPU attribute table ?
+  .byte $0F,$2D,$3D,$30
+  .byte $0F,$2D,$3D,$30
+  .byte $0F,$2D,$3D,$30
+  .byte $0F,$2D,$3D,$30
+
+  ; 4 sprite palettes, referenced below in sprite attribute column
+  .byte $0F,$0A,$0F,$19
+  .byte $0F,$02,$0F,$12
+  .byte $0F,$2D,$0F,$20
+  .byte $0F,$02,$0F,$3C
 
 Sprites:
-  ; vert tile attr horiz
+  ; Sprite data (how many can I put here?)
+  ; Y coord (vertical), tile selection, attribute (palette), X coordinate (horizontal)
   .byte $00, $00, $00, $00 ; H sprite
   .byte $00, $01, $00, $00 ; E sprite
   .byte $00, $02, $00, $00 ; L sprite
