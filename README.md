@@ -1,4 +1,5 @@
 # Hello World for the NES (6502 assembly version for the ca65 assembler)
+See the parent repository for other projects. https://github.com/thtroyer/nes
 
 Work in progress, but solution currently shows sprites, displays a background, and moves the sprites around with a d-pad.
 
