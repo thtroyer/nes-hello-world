@@ -239,7 +239,7 @@ VBlankCycle:
   rts
 
 
-Reset:
+ResetHandler:
   sei
   cld
   .repeat 3
@@ -344,7 +344,7 @@ EnableSprites:
 GameLoop:
   jmp GameLoop
 
-VBlank:
+VBlankHandler:
   jsr HandleControllerInput
   jsr SetSpritePositions
   ;jsr SetUpVariables
@@ -454,7 +454,7 @@ Sprites:
   .byte $00, $13, $02, $00 ; ! sprite
 
 .segment "VECTORS"
-.word VBlank, Reset
+.word VBlankHandler, ResetHandler
 
 .segment "CHRROM"
 .incbin "hello.chr"
